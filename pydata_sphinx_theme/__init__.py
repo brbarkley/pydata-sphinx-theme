@@ -136,7 +136,7 @@ def setup_edit_url(app, pagename, templatename, context, doctree):
 
     def get_edit_url():
         """Return a URL for an "edit this page" link."""
-        required_values = ["github_user", "github_repo", "github_version"]
+        required_values = ["vcs_host", "vcs_user", "vcs_repo", "blob_or_edit", "vcs_version"]
         for val in required_values:
             if not context.get(val):
                 raise ExtensionError(
@@ -144,9 +144,11 @@ def setup_edit_url(app, pagename, templatename, context, doctree):
                     "Add %s to your `html_context` configuration" % val
                 )
 
-        github_user = context["github_user"]
-        github_repo = context["github_repo"]
-        github_version = context["github_version"]
+        vcs_host = context["vcs_host"]
+        vcs_user = context["vcs_user"]
+        vcs_repo = context["vcs_repo"]
+        blob_or_edit = context["blob_or_edit"]
+        vcs_version = context["vcs_version"]
         file_name = f"{pagename}{context['page_source_suffix']}"
 
         # Make sure that doc_path has a path separator only if it exists (to avoid //)
@@ -156,8 +158,8 @@ def setup_edit_url(app, pagename, templatename, context, doctree):
 
         # Build the URL for "edit this button"
         url_edit = (
-            f"https://github.com/{github_user}/{github_repo}"
-            f"/edit/{github_version}/{doc_path}{file_name}"
+            f"https://{vcs_host}/{vcs_user}/{vcs_repo}"
+            f"/{blob_or_edit}/{vcs_version}/{doc_path}{file_name}"
         )
         return url_edit
 
