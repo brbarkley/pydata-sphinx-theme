@@ -19,6 +19,7 @@ following configuration:
 
    html_theme_options = {
      "github_url": "https://github.com/<your-org>/<your-repo>",
+     "gitlab_url": "https://gitlab.com/<your-org>/<your-repo>",
      "twitter_url": "https://twitter.com/<your-handle>",
    }
 
@@ -63,11 +64,26 @@ your ``conf.py`` file:
 .. code:: python
 
    html_context = {
-       "github_user": "<your-github-org>",
-       "github_repo": "<your-github-repo>",
-       "github_version": "<your-branch>",
+       "vcs_host": "<your-vcs-host>",
+       "vcs_user": "<your-vcs-org>",
+       "vcs_repo": "<your-vcs-repo>",
+       "blob_or_edit": "<show-blob-or-edit>",
+       "vcs_version": "<your-branch>",
        "doc_path": "<path-from-root-to-your-docs>",
    }
+
+
+Secondary logo in right sidebar
+====================================
+
+You can add a logo in the right sidebar below the Edit this Page button. To do so, set the following
+`html_theme_options` in your ``conf.py``:
+
+.. code:: python
+
+    html_theme_options = {
+        "secondary_logo": {"path": "_static/<image-file>", "width": "<width-of-image>"}
+    }
 
 
 Configure the search bar position
